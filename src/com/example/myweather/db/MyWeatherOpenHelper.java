@@ -13,29 +13,31 @@ public class MyWeatherOpenHelper extends SQLiteOpenHelper{
 
 
     public static final String CREATE_TODAY = "create table Today(" +
-            "id integer primary key autoincrement," +
-            "province_name text," +
-            "province_code text)";
+            "today_update  text," +
+            "today_day  text," +
+            "today_jpgName  text," +
+            "today_sun  text," +
+            "today_temperature  text," +
+            "today_air  text," +
+            "today_weather  text," +
+            "today_description  text)";
 
 
     public static final String CREATE_TOMORROW = "create table Tomorrow(" +
-            "id integer primary key autoincrement," +
-            "city_name text," +
-            "city_code text," +
-            "province_id integer)";
+            "tomorrow_day  text," +
+            "tomorrow_jpgName  text," +
+            "tomorrow_temperature  text)";
 
 
     public static final String CREATE_TWODAYLATER = "create table TwoDayLater(" +
-            "id integer primary key autoincrement," +
-            "county_name text," +
-            "county_code text," +
-            "city_id integer)";
+            "twoDayLater_day  text," +
+            "twoDayLater_jpgName  text," +
+            "twoDayLater_temperature  text)";
 
     public static final String CREATE_THREEDAYLATER = "The day after ThreeDayLater(" +
-            "id integer primary key autoincrement," +
-            "county_name text," +
-            "county_code text," +
-            "city_id integer)";
+            "threeDayLater_day  text," +
+            "threeDayLater_jpgName  text," +
+            "threeDayLater_temperature  text)";
 
 
     public MyWeatherOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

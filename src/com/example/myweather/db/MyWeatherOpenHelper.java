@@ -11,28 +11,27 @@ public class MyWeatherOpenHelper extends SQLiteOpenHelper{
 
 
 
-    /**
-     * Province TABLE  ↓
-     */
-    public static final String CREATE_PROVINCE = "create table Province(" +
+
+    public static final String CREATE_TODAY = "create table Today(" +
             "id integer primary key autoincrement," +
             "province_name text," +
             "province_code text)";
 
 
-    /**
-     * City TABLE  ↓
-     */
-    public static final String CREATE_CITY = "create table Province(" +
+    public static final String CREATE_TOMORROW = "create table Tomorrow(" +
             "id integer primary key autoincrement," +
             "city_name text," +
             "city_code text," +
             "province_id integer)";
 
-    /**
-     * County TABLE ↓
-     */
-    public static final String CREATE_COUNTY = "create table Province(" +
+
+    public static final String CREATE_TWODAYLATER = "create table TwoDayLater(" +
+            "id integer primary key autoincrement," +
+            "county_name text," +
+            "county_code text," +
+            "city_id integer)";
+
+    public static final String CREATE_THREEDAYLATER = "The day after ThreeDayLater(" +
             "id integer primary key autoincrement," +
             "county_name text," +
             "county_code text," +
@@ -45,9 +44,10 @@ public class MyWeatherOpenHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL(CREATE_PROVINCE);    //CREATE PROVINCE TABLE
-        db.execSQL(CREATE_CITY);        //CREATE CITY TABLE
-        db.execSQL(CREATE_COUNTY);      //CREATE COUNTY TABLE
+        db.execSQL(CREATE_TODAY);
+        db.execSQL(CREATE_TOMORROW);
+        db.execSQL(CREATE_TWODAYLATER);
+        db.execSQL(CREATE_THREEDAYLATER);
     }
 
     @Override

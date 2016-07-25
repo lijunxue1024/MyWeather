@@ -13,6 +13,7 @@ public class MyWeatherOpenHelper extends SQLiteOpenHelper{
     public static final String CREATE_DAYWEATHER = "create table DayWeather(" +
             "dayWeather_update  text," +
             "dayWeather_day_description  text," +
+            "dayWeather_day_number  text," +
             "dayWeather_weekDay  text," +
             "dayWeather_jpgName  text," +
             "dayWeather_sun  text," +

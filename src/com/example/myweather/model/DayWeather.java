@@ -1,7 +1,11 @@
 package com.example.myweather.model;
 
+import com.example.myweather.R;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by rabook on 2016/7/24.
@@ -12,13 +16,16 @@ public class DayWeather {
     private String update;
     private String weekDay;
     private String day_number;
-    private String jpgName;
+    private int  jpgId;
     private String sun;
     private String temperature;
     private String air;
     private String weather;
     private String description;
-
+    public DayWeather(String day_description)
+    {
+        this.day_description = day_description;
+    }
     public String getUpdate() {
         return update;
     }
@@ -28,12 +35,81 @@ public class DayWeather {
     }
 
 
-    public String getJpgName() {
-        return jpgName;
+    public int getJpgId() {
+        return jpgId;
     }
 
-    public void setJpgName(String jpgName) {
-        this.jpgName = jpgName;
+    public void setJpgId(String jpgName) {
+
+            switch (jpgName)
+            {
+                case "0.gif" : jpgId = R.drawable.ic_0;
+                    break;
+                case "1.gif" : jpgId = R.drawable.ic_1;
+                    break;
+                case "2.gif" : jpgId = R.drawable.ic_2;
+                    break;
+                case "3.gif" : jpgId = R.drawable.ic_3;
+                    break;
+                case "4.gif" : jpgId = R.drawable.ic_4;
+                    break;
+                case "5.gif" : jpgId = R.drawable.ic_5;
+                    break;
+                case "6.gif" : jpgId = R.drawable.ic_6;
+                    break;
+                case "7.gif" : jpgId = R.drawable.ic_7;
+                    break;
+                case "8.gif" : jpgId = R.drawable.ic_8;
+                    break;
+                case "9.gif" : jpgId = R.drawable.ic_9;
+                    break;
+                case "10.gif" : jpgId = R.drawable.ic_10;
+                    break;
+                case "11.gif" : jpgId = R.drawable.ic_11;
+                    break;
+                case "12.gif" : jpgId = R.drawable.ic_12;
+                    break;
+                case "13.gif" : jpgId = R.drawable.ic_13;
+                    break;
+                case "14.gif" : jpgId = R.drawable.ic_14;
+                    break;
+                case "15.gif" : jpgId = R.drawable.ic_15;
+                    break;
+                case "16.gif" : jpgId = R.drawable.ic_16;
+                    break;
+                case "17.gif" : jpgId = R.drawable.ic_17;
+                    break;
+                case "18.gif" : jpgId = R.drawable.ic_18;
+                    break;
+                case "19.gif" : jpgId = R.drawable.ic_19;
+                    break;
+                case "20.gif" : jpgId = R.drawable.ic_20;
+                    break;
+                case "21.gif" : jpgId = R.drawable.ic_7;
+                    break;
+                case "22.gif" : jpgId = R.drawable.ic_8;
+                    break;
+                case "23.gif" : jpgId = R.drawable.ic_9;
+                    break;
+                case "24.gif" : jpgId = R.drawable.ic_9;
+                    break;
+                case "25.gif" : jpgId = R.drawable.ic_10;
+                    break;
+                case "26.gif" : jpgId = R.drawable.ic_14;
+                    break;
+                case "27.gif" : jpgId = R.drawable.ic_15;
+                    break;
+                case "28.gif" : jpgId = R.drawable.ic_16;
+                    break;
+                case "29.gif" : jpgId = R.drawable.ic_21;
+                    break;
+                case "30.gif" : jpgId = R.drawable.ic_20;
+                    break;
+                case "31.gif" : jpgId = R.drawable.ic_20;
+                    break;
+                default:  jpgId = R.drawable.ic_null;
+                    break;
+            }
     }
 
     public String getSun() {
@@ -97,9 +173,7 @@ public class DayWeather {
         return day_description;
     }
 
-    public void setDay_description(String day_description) {
-        this.day_description = day_description;
-    }
+
 
     /**
      *     y,m,d  year:1993 month:1 day:12
@@ -159,11 +233,25 @@ public class DayWeather {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dateNowStr = sdf.format(date);
 
-
-        if (dateNowStr.equals(day_number)){
-            return true;
+        if (day_number != null) {
+            if (dateNowStr.equals(day_number)) {
+                return true;
+            }
         }
         return false;
     }
+
+
+
+    //
+    public static List getDayWeatherList(List list)
+    {
+        List dayWeatherList = new ArrayList<DayWeather>();
+        //******get
+
+        return  dayWeatherList;
+    }
+
+
 
 }

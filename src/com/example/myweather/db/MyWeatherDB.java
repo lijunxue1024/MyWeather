@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.myweather.model.DayWeather;
 
+import java.util.List;
+
 
 /**
  * Created by rabook on 2016/7/23.
@@ -50,26 +52,27 @@ public class MyWeatherDB {
     }
 
     /**
-     *  save Today to DB
+     *  save one to DB
      */
-    public void savedayWeather (DayWeather dayWeather)
+    public void saveDayWeather (DayWeather dayWeather)
     {
         if(dayWeather != null)
         {
             ContentValues values = new ContentValues();
 
-            values.put("today_weekDay",dayWeather.getWeekDay());
-            values.put("today_temperature",dayWeather.getTemperature());
-            values.put("today_weather",dayWeather.getWeather());
-            values.put("today_jpgName",dayWeather.getJpgName());
+            values.put("dayWeather_weekDay",dayWeather.getWeekDay());
+            values.put("dayWeather_temperature",dayWeather.getTemperature());
+            values.put("dayWeather_weather",dayWeather.getWeather());
+            values.put("dayWeather_jpgName",dayWeather.getJpgId());
+            values.put("dayWeather_day_description", dayWeather.getDay_description());
 
             //if is not today
             if (dayWeather.getDay_description().equals("today")) {
-                values.put("today_update", dayWeather.getUpdate());
-                values.put("day_number", dayWeather.getDay_number());
-                values.put("today_sun", dayWeather.getSun());
-                values.put("today_air", dayWeather.getAir());
-                values.put("today_description", dayWeather.getDescription());
+                values.put("dayWeather_update", dayWeather.getUpdate());
+                values.put("dayWeather_day_number", dayWeather.getDay_number());
+                values.put("dayWeather_sun", dayWeather.getSun());
+                values.put("dayWeather_air", dayWeather.getAir());
+                values.put("dayWeather_description", dayWeather.getDescription());
             }
             db.insert("DayWeather",null,values);
         }
@@ -80,29 +83,37 @@ public class MyWeatherDB {
      */
     public DayWeather loadDayWeatherBydaydescription(String dayDescription)
     {
-        DayWeather dayWeather = new DayWeather();
+        DayWeather dayWeather = null;
         Cursor cursor = db
-                .query("Today",null,"day_description = ?",
+                .query("DayWeather",null,"day_description = ?",
                         new String[]{dayDescription}
                         ,null,null,null);
         if (cursor.moveToFirst())
         {
+                String day_description = cursor.getString(cursor.getColumnIndex("dayWeather_day_description"));
+                dayWeather = new DayWeather(day_description);
+                dayWeather.setWeekDay(cursor.getString(cursor.getColumnIndex("dayWeather_weekDay")));
+                dayWeather.setTemperature(cursor.getString(cursor.getColumnIndex("dayWeather_temperature")));
+                dayWeather.setWeather(cursor.getString(cursor.getColumnIndex("dayWeather_weather")));
+                dayWeather.setJpgId(cursor.getString(cursor.getColumnIndex("dayWeather_jpgName")));
 
-                dayWeather.setWeekDay(cursor.getString(cursor.getColumnIndex("today_weekDay")));
-                dayWeather.setTemperature(cursor.getString(cursor.getColumnIndex("today_temperature")));
-                dayWeather.setWeather(cursor.getString(cursor.getColumnIndex("today_weather")));
-                dayWeather.setJpgName(cursor.getString(cursor.getColumnIndex("today_jpgName")));
 
             if(dayDescription.equals("today")) {
-                dayWeather.setDay_description(cursor.getString(cursor.getColumnIndex("today_description")));
-                dayWeather.setUpdate(cursor.getString(cursor.getColumnIndex("today_update")));
-                dayWeather.setDay_number(cursor.getString(cursor.getColumnIndex("day_number")));
-                dayWeather.setSun(cursor.getString(cursor.getColumnIndex("today_sun")));
-                dayWeather.setAir(cursor.getString(cursor.getColumnIndex("today_air")));
+                dayWeather.setDescription(cursor.getString(cursor.getColumnIndex("dayWeather_description")));
+                dayWeather.setUpdate(cursor.getString(cursor.getColumnIndex("dayWeather_update")));
+                dayWeather.setDay_number(cursor.getString(cursor.getColumnIndex("dayWeather_day_number")));
+                dayWeather.setSun(cursor.getString(cursor.getColumnIndex("dayWeather_sun")));
+                dayWeather.setAir(cursor.getString(cursor.getColumnIndex("dayWeather_air")));
             }
         }
         return dayWeather;
     }
+
+
+
+
+
+
 
 
 }

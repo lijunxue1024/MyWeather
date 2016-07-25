@@ -1,6 +1,7 @@
 package com.example.myweather.business;
 
 import android.content.Context;
+import android.util.Log;
 import com.example.myweather.db.MyWeatherDB;
 import com.example.myweather.model.DayWeather;
 import com.example.myweather.util.HttpCallbackListener;
@@ -47,6 +48,16 @@ public class WebService {
 
                 //系统维护
                 if (length < 2) {
+                    /**
+                     * 测试起点
+                     */
+
+                        Log.d("--------","WebService----------//系统维护if (length < 2");
+                    /**
+                     * 测试结束
+                     */
+
+
                     return ;
                 }
                 // 获取返回的结果
@@ -56,6 +67,14 @@ public class WebService {
 
                 //这里可以是处理结果
                 dayWeatherList = DayWeather.getDayWeatherList(result);
+                /**
+                 * 测试起点
+                 */
+                if (dayWeatherList == null)
+                    Log.d("--------","WebService----------dayWeatherList == null");
+                /**
+                 * 测试结束
+                 */
             }
 
             @Override

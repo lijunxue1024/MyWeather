@@ -1,13 +1,10 @@
 package com.example.myweather.deal;
 
 import android.content.Context;
-import android.widget.ListView;
-import com.example.myweather.adapter.WeatherAdapter;
+import android.util.Log;
 import com.example.myweather.business.DBService;
 import com.example.myweather.business.WebService;
-import com.example.myweather.db.MyWeatherDB;
 import com.example.myweather.model.DayWeather;
-
 import java.util.List;
 
 /**
@@ -45,9 +42,13 @@ public class WeatherDataDeal {
     }
 
 
-
-    public List getWeatherData(String city)
+    /**
+     * getWeatherData
+     */
+    public List getWeatherDataList(String city)
     {
+        webService = new WebService();
+        dbService = new DBService(context);
         dayWeatherList = dbService.getDayWeatherList();
         today = (DayWeather) dayWeatherList.get(0);
         if ( today == null || (!today.checkDay()) )
@@ -56,6 +57,14 @@ public class WeatherDataDeal {
             dayWeatherList = webService.getDayWeatherList();
             dbService.saveDayWeatherList(dayWeatherList);
         }
+        /**
+         * 测试起点
+         */
+        if (dayWeatherList == null)
+            Log.d("--------","WeatherDataDeal-----dayWeatherList == null");
+        /**
+         * 测试结束
+         */
         return dayWeatherList;
     }
 }

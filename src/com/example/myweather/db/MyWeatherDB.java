@@ -85,7 +85,7 @@ public class MyWeatherDB {
     {
         DayWeather dayWeather = null;
         Cursor cursor = db
-                .query("DayWeather",null,"day_description = ?",
+                .query("DayWeather",null,"dayWeather_day_description = ?",
                         new String[]{dayDescription}
                         ,null,null,null);
         if (cursor.moveToFirst())
